@@ -33,6 +33,12 @@ class Evento
      */
     private $miniEventos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Dia", inversedBy="eventos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $dia;
+
     public function __construct()
     {
         $this->miniEventos = new ArrayCollection();
@@ -94,6 +100,18 @@ class Evento
                 $miniEvento->setRelation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDia(): ?Dia
+    {
+        return $this->dia;
+    }
+
+    public function setDia(?Dia $dia): self
+    {
+        $this->dia = $dia;
 
         return $this;
     }
