@@ -68,11 +68,17 @@ class Membro
      */
     private $saida;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\EventoDescricao", mappedBy="membro")
+     */
+    private $eventos;
+
     public function __construct()
     {
         $this->membroEResponsavels = new ArrayCollection();
         $this->telefones = new ArrayCollection();
         $this->faixas = new ArrayCollection();
+        $this->eventos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -248,6 +254,37 @@ class Membro
     public function setSaida(?\DateTimeInterface $saida): self
     {
         $this->saida = $saida;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EventoDescricao[]
+     */
+    public function getEventos(): Collection
+    {
+        return $this->eventos;
+    }
+
+    public function addEvento(EventoDescricao $evento): self
+    {
+        if (!$this->eventos->contains($evento)) {
+            $this->eventos[] = $evento;
+            $evento->setMembro($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvento(EventoDescricao $evento): self
+    {
+        if ($this->eventos->contains($evento)) {
+            $this->eventos->removeElement($evento);
+            // set the owning side to null (unless already changed)
+            if ($evento->getMembro() === $this) {
+                $evento->setMembro(null);
+            }
+        }
 
         return $this;
     }
