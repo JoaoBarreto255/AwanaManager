@@ -26,11 +26,6 @@ class Jogo
      */
     private $descricao;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $pontuacao;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -56,18 +51,6 @@ class Jogo
     public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
-
-        return $this;
-    }
-
-    public function getPontuacao(): ?float
-    {
-        return $this->pontuacao;
-    }
-
-    public function setPontuacao(float $pontuacao): self
-    {
-        $this->pontuacao = $pontuacao;
 
         return $this;
     }
