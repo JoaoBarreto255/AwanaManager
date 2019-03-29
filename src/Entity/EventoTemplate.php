@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JogoRepository")
  */
-class Jogo
+class EventoTemplate
 {
     /**
      * @ORM\Id()
@@ -25,11 +25,6 @@ class Jogo
      * @ORM\Column(type="string", length=400, nullable=true)
      */
     private $descricao;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $pontuacao;
 
     public function getId(): ?int
     {
@@ -56,18 +51,6 @@ class Jogo
     public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
-
-        return $this;
-    }
-
-    public function getPontuacao(): ?float
-    {
-        return $this->pontuacao;
-    }
-
-    public function setPontuacao(float $pontuacao): self
-    {
-        $this->pontuacao = $pontuacao;
 
         return $this;
     }
